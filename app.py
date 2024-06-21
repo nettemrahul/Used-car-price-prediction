@@ -8,7 +8,7 @@ appp = Flask(__name__)
 model = pickle.load(open('random_forest_regression_modell.pkl', 'rb'))
 @appp.route('/',methods=['GET'])
 def Home():
-    return render_template('indexx.html')
+    return render_template('index.html')
 
 
 
@@ -43,11 +43,11 @@ def predict():
         prediction=model.predict([[presentprice,Kilometers_Driven2,mileage,engine,power,Owner_Type,Year,Fuel_Type_Diesel,Fuel_Type_Petrol,Transmission_Manual]])
         output=round(prediction[0],2)
         if output<0:
-            return render_template('indexx.html',prediction_texts="Sorry you cannot sell this car")
+            return render_template('index.html',prediction_texts="Sorry you cannot sell this car")
         else:
-            return render_template('indexx.html',prediction_text="You Can Sell The Car at {}".format(output))
+            return render_template('index.html',prediction_text="You Can Sell The Car at {}".format(output))
     else:
-        return render_template('indexx.html')
+        return render_template('index.html')
 
 if __name__=="__main__":
     appp.run(debug=True)
